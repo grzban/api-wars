@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>API Star Wars</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <header>
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">API WARS</h5>
+
+            </div>
+        </div>
+        <nav>
+            <div class="card text-center">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#">Planet list</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Voting statistics</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Registration</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <article>
+        <div class="card text-center">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </article>
+    <footer>
+        <div class="card text-center">
+            <footer class="blockquote-footer">&copy;GB</footer>
+        </div>
+    </footer>
+</div>
+</body>
+</html>
