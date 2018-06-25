@@ -1,8 +1,8 @@
 let activePage = 1;
 let maxPlanetId = 61;
 let pageScopeMin = 1;
-let pageScopeMax = 10;
-let amountOfThePage = 10;
+let pageScopeMax = 5;
+let amountOfThePage = 5;
 
 let planetHeads = [
     "Name",
@@ -162,14 +162,10 @@ function createPeopleTableRow(columns, data) {
     return row;
 }
 
-//do poprawy
 function createPeopleTable() {
     let table = document.createElement("table");
     table.className = "table";
     table.appendChild(createTableHeadRow(peopleHeads));
-    /* for (let i = 1; i <= 2; i++) {
-         getResident(i, table);
-     }*/
     return table;
 }
 
@@ -252,11 +248,40 @@ function createLi(name) {
         event.preventDefault();
         let regex = /span-/gi;
         let id = event.srcElement.id;
+
         activePage = parseInt(id.replace(regex, ''));
+        console.log(id);
         console.log(activePage);
+        li.className += "active";
         generatePlanetTableView();
     });
     return li;
+}
+
+function showLoginModal() {
+    let loginModal = document.getElementById("login-modal");
+    loginModal.style.display = "block";
+    document.getElementById("close-login-modal").addEventListener("click", function() {
+        loginModal.style.display = "none";
+    })
+    closeModalIfClickedOutside(loginModal);
+}
+
+function showSignupModal() {
+    let signupModal = document.getElementById("signup-modal");
+    signupModal.style.display = "block";
+    document.getElementById("close-signup-modal").addEventListener("click", function() {
+        signupModal.style.display = "none";
+    })
+    closeModalIfClickedOutside(signupModal);
+}
+
+function closeModalIfClickedOutside(modalId) {
+     window.onclick = function(event) {
+        if (event.target == modalId) {
+            modalId.style.display = "none";
+        }
+    }
 }
 
 window.onload = function () {

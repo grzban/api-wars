@@ -1,11 +1,25 @@
 {% extends "layout.html" %}
-
 {% block content %}
-<div class="card-body" id="planet_list">
 
-</div>
-<div class="card"  id="planet_list_pagination">
-    <ul class="pagination justify-content-center">
+    <!--<div class="card text-center">
+
+
+    </div>
+-->
+
+<article>
+    {% if username %}
+        <div class="card-body" id="planet_list">
+
+        </div>
+    {% else %}
+    <div>
+        Log in, please.
+    </div>
+    {% endif %}
+
+    <div class="card"  id="planet_list_pagination">
+    <!--<ul class="pagination justify-content-center">
         <li class="page-item disabled">
             <span class="page-link">Previous</span>
         </li>
@@ -23,21 +37,76 @@
         <li class="page-item">
             <a class="page-link" href="#">Next</a>
         </li>
-    </ul>
+    </ul>-->
 </div>
-
+</article>
 <!--modals-->
 <!--resident modal-->
-<div id="residents" class="modal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
+<div id="residents" class="modal modal-backdrop" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="width:900px; -ms-overflow-y: scroll;" >
             <div class="modal-header">
                 <h5 class="modal-title">Residents of </h5>
-                <span class="close" id="residentsClose">&times;</span>
+                <span class="close" id="residentsClose" data-dismiss="modal">&times;</span>
             </div>
-            <div class="modal-body" id="modal-body">
-                <p></p>
+            <div class="modal-body" id="modal-body" >
             </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for login purposes -->
+<div class="modal modal-backdrop" id="login-modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title"><b>Login</b></h2>
+                <button type="button" id="close-login-modal" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form action="{{ url_for('login') }}" method="POST" id="login-form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="username-login"><b>Username</b></label><br>
+                        <input type="text" class="form-control" placeholder="Enter username" name="username-login"
+                               required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password-login"><b>Password</b></label><br>
+                        <input type="password" class="form-control" placeholder="Enter password"
+                               name="password-login" required>
+                    </div>
+                    <button type="submit" class="btn btn-info" id="login-accept-button">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for sign up purposes -->
+<div class="modal modal-backdrop" id="signup-modal" role="dialog">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title"><b>Sign up</b></h2>
+                <button type="button" id="close-signup-modal" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form action="{{ url_for('registration') }}" method="POST" id="signup-form">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="username-signup"><b>Username</b></label><br>
+                        <input type="text" class="form-control" placeholder="Enter username" name="username-signup"
+                               pattern=".{3,}" required title="minimum 3 characters">
+                    </div>
+                    <div class="form-group">
+                        <label for="password-signup"><b>Password</b></label><br>
+                        <input type="password" class="form-control" placeholder="Enter password"
+                               name="password-signup" pattern=".{3,}" required title="minimum 3 characters">
+                    </div>
+                    <button type="submit" class="btn btn-info" id="signup-accept-button">Signup</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
